@@ -71,8 +71,13 @@
 /// Adjust font size to fit width - Default is NO
 @property(assign, nonatomic, getter = isAdjustsFontSizeToFitWidth) BOOL adjustsFontSizeToFitWidth;
 
+@property(assign, nonatomic, getter = isRotationGestureEnabled) BOOL rotationGestureEnabled;
+
 @property(assign, nonatomic) UIColor *backgroundColor;
 @property(assign, nonatomic) UIColor *backgroundColorWithNavigationHidden;
+
+
+
 /// Current index of the image displayed
 /// @return current index of the image displayed
 - (NSInteger)currentImageIndex;

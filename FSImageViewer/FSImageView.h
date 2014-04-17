@@ -36,6 +36,8 @@
 @property(strong, nonatomic, readonly) FSImageScrollView *scrollView;
 @property(assign, nonatomic) BOOL loading;
 
+@property(assign, nonatomic, getter = isRotationGestureEnabled) BOOL rotationGestureEnabled;
+
 - (void)killScrollViewZoom;
 
 - (void)layoutScrollViewAnimated:(BOOL)animated;

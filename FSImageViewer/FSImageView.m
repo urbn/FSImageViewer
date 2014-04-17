@@ -404,6 +404,9 @@
 #pragma mark - RotateGesture
 
 - (void)rotate:(UIRotationGestureRecognizer *)gesture {
+    
+    if(!self.isRotationGestureEnabled)
+        return;
 
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [self.layer removeAllAnimations];

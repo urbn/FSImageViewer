@@ -487,6 +487,7 @@
         imageView = [[FSImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
         UIColor *backgroundColor = barsHidden ? [self backgroundColorWithNavigationHidden] : [self backgroundColor];
         [imageView changeBackgroundColor:backgroundColor];
+        imageView.rotationGestureEnabled = self.rotationGestureEnabled;
         [_imageViews replaceObjectAtIndex:(NSUInteger) page withObject:imageView];
     }
 
