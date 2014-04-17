@@ -76,7 +76,7 @@
 @property(assign, nonatomic) UIColor *backgroundColor;
 @property(assign, nonatomic) UIColor *backgroundColorWithNavigationHidden;
 
-
+- (void)setBarsHidden:(BOOL)hidden animated:(BOOL)animated;
 
 /// Current index of the image displayed
 /// @return current index of the image displayed
