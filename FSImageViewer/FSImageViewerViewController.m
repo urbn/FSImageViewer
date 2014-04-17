@@ -85,7 +85,7 @@
 	}
 #endif
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [self backgroundColor];
 
     if (!_scrollView) {
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -227,6 +227,27 @@
     return pageIndex;
 }
 
+
+#pragma mark - Background Colors
+
+- (UIColor*)backgroundColor{
+    
+    if(!_backgroundColor)
+        return [UIColor whiteColor];
+    
+    return _backgroundColor;
+}
+
+
+- (UIColor*)backgroundColorWithNavigationHidden{
+    
+    if(!_backgroundColorWithNavigationHidden)
+        return [UIColor blackColor];
+    
+    return _backgroundColorWithNavigationHidden;
+}
+
+
 #pragma mark - Bar/Caption Methods
 
 - (void)setStatusBarHidden:(BOOL)hidden {
@@ -252,7 +273,7 @@
     [self.navigationController setNavigationBarHidden:hidden animated:animated];
 
     [UIView animateWithDuration:0.3 animations:^{
-        UIColor *backgroundColor = hidden ? [UIColor blackColor] : [UIColor whiteColor];
+        UIColor *backgroundColor = hidden ? [self backgroundColorWithNavigationHidden] : [self backgroundColor];
         self.view.backgroundColor = backgroundColor;
         self.scrollView.backgroundColor = backgroundColor;
         for (FSImageView *imageView in _imageViews) {
@@ -464,7 +485,7 @@
 
     if (imageView == nil || (NSNull *) imageView == [NSNull null]) {
         imageView = [[FSImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
-        UIColor *backgroundColor = barsHidden ? [UIColor blackColor] : [UIColor whiteColor];
+        UIColor *backgroundColor = barsHidden ? [self backgroundColorWithNavigationHidden] : [self backgroundColor];
         [imageView changeBackgroundColor:backgroundColor];
         [_imageViews replaceObjectAtIndex:(NSUInteger) page withObject:imageView];
     }
