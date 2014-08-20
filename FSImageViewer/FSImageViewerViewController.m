@@ -260,7 +260,6 @@
         return;
     }
 
-    [self setStatusBarHidden:hidden];
     if (hidden) {
         [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             self.navigationController.navigationBar.alpha = 0.0;
