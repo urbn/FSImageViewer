@@ -252,16 +252,7 @@
 
 - (void)setStatusBarHidden:(BOOL)hidden {
     statusBarHidden = hidden;
-#ifdef __IPHONE_7_0
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    } else {
-#endif
-        [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
-#ifdef __IPHONE_7_0
-    }
-#endif
-
+    [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationFade];
 }
 
 - (void)setBarsHidden:(BOOL)hidden animated:(BOOL)animated {
@@ -270,7 +261,15 @@
     }
 
     [self setStatusBarHidden:hidden];
-    [self.navigationController setNavigationBarHidden:hidden animated:animated];
+    if (hidden) {
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            self.navigationController.navigationBar.alpha = 0.0;
+        } completion:nil];
+    } else {
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            self.navigationController.navigationBar.alpha = 1.0;
+        } completion:nil];
+    }
 
     [UIView animateWithDuration:0.3 animations:^{
         UIColor *backgroundColor = hidden ? [self backgroundColorWithNavigationHidden] : [self backgroundColor];
